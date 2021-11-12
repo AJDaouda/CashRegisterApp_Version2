@@ -13,13 +13,14 @@ public class ListViewAdapter extends BaseAdapter {
 
     StoreManager StoreMng = new StoreManager();
     List<Product> productList;
-    Context storecontext;
-    LayoutInflater inflater;
+    Context storeContext;
+    //LayoutInflater inflater; 2nd method
 
 
-    public ListViewAdapter(List<Product> list,Context activity_context){// can I change it to storecontext later
+    public ListViewAdapter(List<Product> list,Context activity_context){
         this.productList = list;
-        this.storecontext = activity_context;
+        this.storeContext = activity_context;
+        //this.inflater = LayoutInflater.from(storeContext); 2nd method
     }
 
     @Override
@@ -39,7 +40,8 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(storecontext).inflate(R.layout.list_view_item,null);
+        convertView = LayoutInflater.from(storeContext).inflate(R.layout.list_view_item,null);
+        //convertView = inflater.inflate(R.layout.list_view_item,null); 2nd method
         TextView itemName = (TextView) convertView.findViewById(R.id.prodName);
         TextView itemQnt = (TextView) convertView.findViewById(R.id.prodQnt);
         TextView itemPrice = (TextView) convertView.findViewById(R.id.prodPrice);

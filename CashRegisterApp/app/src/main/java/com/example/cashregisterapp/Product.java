@@ -16,27 +16,19 @@ public class Product {
     }
 
     //creating getters for the class instance variables
-    public String getProdName() {
-        return prodName;
-    }
-
+    public String getProdName() { return prodName; }
     public int getProdQnt() {
         return prodQnt;
     }
-
-    public double getProdPrice() {
-        return prodPrice;
-    }
+    public double getProdPrice() { return prodPrice; }
 
     //creating setters for the class instance variables
     public void setProdName(String prodName) {
         this.prodName = prodName;
     }
-
     public void setProdQnt(int prodQnt) {
         this.prodQnt = prodQnt;
     }
-
     public void setProdPrice(double prodPrice) {
         this.prodPrice = prodPrice;
     }
