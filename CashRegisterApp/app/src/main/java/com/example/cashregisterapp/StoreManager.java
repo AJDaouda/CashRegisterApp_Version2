@@ -1,8 +1,11 @@
 package com.example.cashregisterapp;
 
+import android.content.Context;
+import android.view.LayoutInflater;
+
 import java.util.ArrayList;
 
-public class Manager {
+public class StoreManager {
     //Create prod array list
     // connect to custom adapter to show in prod list
 
@@ -12,7 +15,7 @@ public class Manager {
     Product pant =new Product("Pants", 40, 20.44);
     Product shoe =new Product("Shoes", 30, 10.44);
     Product hat =new Product("Hats", 10, 5.99);
-    public Manager() {
+    public StoreManager() {
         this.listOfProd.add(pant);
         this.listOfProd.add(shirt);
         this.listOfProd.add(shoe);
