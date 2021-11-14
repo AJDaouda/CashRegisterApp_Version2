@@ -89,11 +89,14 @@ public class MainActivity extends AppCompatActivity {
             else{
                 newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
-                builder.setTitle("Thank you for your purchase");
+                updateInventoryQnt();
+                builder.setTitle("Thank you for shopping with us");
                 builder.setMessage("Your purchase is:" + "\n" + userQnt + " "+
                         mngObj.listOfProd.get(selectedIndex).getProdName()+ " "+
                         "for the total price of "+ String.format("$%,.2f", calculateTotal()));
                 builder.show();
+                itemQntTV.setText(qntStr="");
+                customAdapter.notifyDataSetChanged();
                 Log.d("new item qnt", String.valueOf(newProdQnt));
             }}
         else {
@@ -126,5 +129,12 @@ public class MainActivity extends AppCompatActivity {
                 "\n" + "Qnt: " + userQnt +
                 "\n" + "Total: $ "+ total);
         return total;
+    }
+
+    public void updateInventoryQnt(){
+        newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
+        mngObj.listOfProd.get(selectedIndex).setProdQnt(newProdQnt);
+        System.out.println(mngObj.listOfProd.get(selectedIndex).getProdQnt());
+        System.out.println(newProdQnt);
     }
 }
