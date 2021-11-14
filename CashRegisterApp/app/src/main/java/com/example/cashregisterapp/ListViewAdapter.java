@@ -49,5 +49,7 @@ public class ListViewAdapter extends BaseAdapter {
         // we can also use
         //itemQnt.setText(productList.get(position).getProdQnt() + "");
         itemPrice.setText(String.valueOf(productList.get(position).getProdPrice()));
-        return convertView; }
+        return convertView;
+
+    }
 }

@@ -1,7 +1,9 @@
 package com.example.cashregisterapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
     //External class objects declaration
     ListViewAdapter customAdapter;//To access the "ListViewAdapter" class
     static StoreManager mngObj = new StoreManager(); //To access the "StoreManager" class
@@ -78,6 +79,46 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Calculates the amount due for a purchase
+    public double calculateTotal(){
+        userQnt = Integer.parseInt(itemQntTV.getText().toString());
+        double price = mngObj.listOfProd.get(selectedIndex).getProdPrice();
+        total = userQnt*price;
+        purchasePrice.setText(String.format("$%,.2f", total));
+        System.out.println("Item:" + mngObj.listOfProd.get(selectedIndex).getProdName()+
+                "\n" + "Qnt: " + userQnt +
+                "\n" + "Total: $ "+ total);
+        return total; }
+
+    //Decrease the inventory for each item when a purchase is completed
+    public void updateInventoryQnt(){
+        newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
+        mngObj.listOfProd.get(selectedIndex).setProdQnt(newProdQnt);
+        System.out.println(mngObj.listOfProd.get(selectedIndex).getProdQnt());
+        System.out.println(newProdQnt); }
+
+    //Increase the inventory for each item when a purchase is completed
+    //public void cancelOrder(){}
+
+    //Required actions when a button on the digit pad is clicked
+    public void btnClicked(View v) {
+        //When the client clicks on the "Clear" button
+        if (v==clear){
+            itemQntTV.setText(qntStr="");
+            itemSelectedTV.setText("");
+            purchasePrice.setText("");
+            System.out.println(itemQntTV.getText().toString());
+            /*calcObj.calcOperands.clear();
+            System.out.println(calcObj.calcOperands.toString());*/
+        }
+        //When the client clicks on the digit pad
+        else{
+            String data = ((Button)v).getText().toString();
+            qntStr+=data;
+            itemQntTV.setText(qntStr);
+            calculateTotal();} }
+
+    //Required actions when the buy button is clicked
     public void buyClicked(View v) {
         if (!((itemQntTV.getText().toString().isEmpty())||(itemSelectedTV.getText().toString().isEmpty()))){
             //int userSelectedQnt = Integer.parseInt(itemQntTV.getText().toString());
@@ -90,11 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
                 updateInventoryQnt();
-                builder.setTitle("Thank you for shopping with us");
-                builder.setMessage("Your purchase is:" + "\n" + userQnt + " "+
-                        mngObj.listOfProd.get(selectedIndex).getProdName()+ " "+
-                        "for the total price of "+ String.format("$%,.2f", calculateTotal()));
-                builder.show();
+                getAlertBox();
                 itemQntTV.setText(qntStr="");
                 customAdapter.notifyDataSetChanged();
                 Log.d("new item qnt", String.valueOf(newProdQnt));
@@ -104,37 +141,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Required actions when a button is clicked
-    public void btnClicked(View v) {
-        //When the client clicks on the "Clear" button
-        if (v==clear){
-            itemQntTV.setText(qntStr="");
-            System.out.println(itemQntTV.getText().toString());
-            /*calcObj.calcOperands.clear();
-            System.out.println(calcObj.calcOperands.toString());*/
-        }
-        //When the client clicks on the digit pad
-        else{
-            String data = ((Button)v).getText().toString();
-            qntStr+=data;
-            itemQntTV.setText(qntStr);
-            calculateTotal();} }
+    //Shows a dialog box whe the shopper purchases an item
+    public void getAlertBox(){
+        builder.setTitle("Thank you for shopping with us");
+        builder.setMessage("Your purchase is:" + "\n" + userQnt + " "+
+                mngObj.listOfProd.get(selectedIndex).getProdName()+ " "+
+                "for the total price of "+ String.format("$%,.2f", calculateTotal()));
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"OK clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-    public double calculateTotal(){
-        userQnt = Integer.parseInt(itemQntTV.getText().toString());
-        double price = mngObj.listOfProd.get(selectedIndex).getProdPrice();
-        total = userQnt*price;
-        purchasePrice.setText(String.format("$%,.2f", total));
-        System.out.println("Item:" + mngObj.listOfProd.get(selectedIndex).getProdName()+
-                "\n" + "Qnt: " + userQnt +
-                "\n" + "Total: $ "+ total);
-        return total;
-    }
-
-    public void updateInventoryQnt(){
-        newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
-        mngObj.listOfProd.get(selectedIndex).setProdQnt(newProdQnt);
-        System.out.println(mngObj.listOfProd.get(selectedIndex).getProdQnt());
-        System.out.println(newProdQnt);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"Cancel clicked",Toast.LENGTH_SHORT).show();
+                //Cancel Order
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        builder.show();
     }
 }
