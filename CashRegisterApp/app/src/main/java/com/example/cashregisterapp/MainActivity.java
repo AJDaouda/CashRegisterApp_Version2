@@ -132,8 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
                 updateInventoryQnt();
                 getAlertBox();
-                itemQntTV.setText(qntStr="");
                 customAdapter.notifyDataSetChanged();
+                itemQntTV.setText(qntStr="");
+                itemSelectedTV.setText("");
+                purchasePrice.setText("");
                 Log.d("new item qnt", String.valueOf(newProdQnt));
             }}
         else {
