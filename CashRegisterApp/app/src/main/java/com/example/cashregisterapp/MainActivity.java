@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Calculates the amount due for a purchase
-    public double calculateTotal(){
+    private double calculateTotal(){
         userQnt = Integer.parseInt(itemQntTV.getText().toString());
         double price = mngObj.listOfProd.get(selectedIndex).getProdPrice();
         total = userQnt*price;
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         return total; }
 
     //Decrease the inventory for each item when a purchase is completed
-    public void updateInventoryQnt(){
+    private void updateInventoryQnt(){
         newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
         mngObj.listOfProd.get(selectedIndex).setProdQnt(newProdQnt);
         System.out.println(mngObj.listOfProd.get(selectedIndex).getProdQnt());
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
                 updateInventoryQnt();
-                getAlertBox();
+                showAlertBox();
                 customAdapter.notifyDataSetChanged();
                 itemQntTV.setText(qntStr="");
                 itemSelectedTV.setText("");
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Shows a dialog box whe the shopper purchases an item
-    public void getAlertBox(){
+    private void showAlertBox(){
         builder.setTitle("Thank you for shopping with us");
         builder.setMessage("Your purchase is:" + "\n" + userQnt + " "+
                 mngObj.listOfProd.get(selectedIndex).getProdName()+ " "+
@@ -166,4 +167,10 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog=builder.create();
         builder.show();
     }
+
+    public void mngBtnClicked(View v) {
+        Intent toMngActivity = new Intent(this, ManagerActivity.class);
+        startActivity(toMngActivity);
+    }
+
 }

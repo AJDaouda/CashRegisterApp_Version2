@@ -12,4 +12,6 @@
     <string name="Btn9_value">9</string>
 
     <string name="BtnClear_value">C</string>
+
+    <string name="Mng_Activity_Bnt">HISTORY</string>
 </resources>

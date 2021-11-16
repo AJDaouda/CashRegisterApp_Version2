@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashRegisterApp">
         <activity
+            android:name=".HistoryReportActivity"
+            android:exported="true" />
+        <!--Original
+        android:exported="false"
+        -->
+        <activity
+            android:name=".ManagerActivity"
+            android:exported="true" />
+        <!--Original
+        android:exported="false"
+        -->
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

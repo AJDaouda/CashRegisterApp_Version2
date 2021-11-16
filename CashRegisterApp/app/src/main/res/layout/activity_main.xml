@@ -191,12 +191,13 @@
                 android:id="@+id/mng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginRight="25dp"
                 android:backgroundTint="@color/VioletRed"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
                 android:gravity="center"
+                android:onClick="mngBtnClicked"
                 android:text="Manager"
+                android:textColor="@color/black"
                 android:textSize="18dp" />
             <TextView
                 android:id="@+id/cost"

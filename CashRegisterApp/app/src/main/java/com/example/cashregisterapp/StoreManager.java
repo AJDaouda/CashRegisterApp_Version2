@@ -23,7 +23,7 @@ public class StoreManager {
     }
 
     //Checks the product inventory when a client wants to buy
-    boolean checkInventory(Product inventory, int clientQnt){
+    public boolean checkInventory(Product inventory, int clientQnt){
         if(clientQnt>inventory.getProdQnt()){
             return false;
         }
