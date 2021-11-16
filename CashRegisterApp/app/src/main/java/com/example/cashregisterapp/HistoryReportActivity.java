@@ -10,5 +10,6 @@ public class HistoryReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_report);
+        //getIntent().getExtras().getInt;
     }
 }

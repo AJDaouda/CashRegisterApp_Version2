@@ -14,11 +14,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     //External class objects declaration
     ListViewAdapter customAdapter;//To access the "ListViewAdapter" class
     static StoreManager mngObj = new StoreManager(); //To access the "StoreManager" class
+    static PurchaseHistory historyMngObj = new PurchaseHistory();
 
 
     //Instance variables declaration
@@ -101,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
     //Increase the inventory for each item when a purchase is completed
     //public void cancelOrder(){}
 
+    //Create a history for each sale
+    private void createHistory(){
+        Date purchaseDate = new Date();
+        PurchaseHistory history = new PurchaseHistory(mngObj.listOfProd.get(selectedIndex).getProdName(),
+                userQnt, total,purchaseDate) ;
+        historyMngObj.Historylist.add(history);
+        System.out.println(history);
+        System.out.println(historyMngObj.Historylist); }
+
     //Required actions when a button on the digit pad is clicked
     public void btnClicked(View v) {
         //When the client clicks on the "Clear" button
@@ -137,7 +149,9 @@ public class MainActivity extends AppCompatActivity {
                 itemQntTV.setText(qntStr="");
                 itemSelectedTV.setText("");
                 purchasePrice.setText("");
+                createHistory();
                 Log.d("new item qnt", String.valueOf(newProdQnt));
+
             }}
         else {
             Toast.makeText(this,"All fields are required",Toast.LENGTH_SHORT).show();
@@ -170,6 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void mngBtnClicked(View v) {
         Intent toMngActivity = new Intent(this, ManagerActivity.class);
+        /*toMngActivity.putCharSequenceArrayListExtra();
+        toMngActivity.putParcelableArrayListExtra();
+        toMngActivity.putStringArrayListExtra();
+        Add a toString method to my history array list
+        Parse the toString historyArray list to my intent
+        */
         startActivity(toMngActivity);
     }
 
