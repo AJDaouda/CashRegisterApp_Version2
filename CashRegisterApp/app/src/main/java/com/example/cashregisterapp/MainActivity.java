@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashregisterapp.Model.PurchaseHistory;
+import com.example.cashregisterapp.Model.StoreManager;
+
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         catalogue = (ListView) findViewById(R.id.listViewid);
 
         // Instantiating the "customAdapter" created above
-        customAdapter = new ListViewAdapter(mngObj.listOfProd,this);
+        customAdapter = new ListViewAdapter(mngObj.getListOfProd(),this);
         catalogue.setAdapter(customAdapter);// Setting "customAdapter" as the adapter to be used by the "catalogue" listview
 
         builder = new AlertDialog.Builder(this);
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedIndex = position;
-                itemSelectedTV.setText(mngObj.listOfProd.get(selectedIndex).getProdName());
+                itemSelectedTV.setText(mngObj.getListOfProd().get(selectedIndex).getProdName());
 
             }
         });
@@ -86,19 +89,19 @@ public class MainActivity extends AppCompatActivity {
     //Calculates the amount due for a purchase
     private double calculateTotal(){
         userQnt = Integer.parseInt(itemQntTV.getText().toString());
-        double price = mngObj.listOfProd.get(selectedIndex).getProdPrice();
+        double price = mngObj.getListOfProd().get(selectedIndex).getProdPrice();
         total = userQnt*price;
         purchasePrice.setText(String.format("$%,.2f", total));
-        System.out.println("Item:" + mngObj.listOfProd.get(selectedIndex).getProdName()+
+        System.out.println("Item:" + mngObj.getListOfProd().get(selectedIndex).getProdName()+
                 "\n" + "Qnt: " + userQnt +
                 "\n" + "Total: $ "+ total);
         return total; }
 
     //Decrease the inventory for each item when a purchase is completed
     private void updateInventoryQnt(){
-        newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
-        mngObj.listOfProd.get(selectedIndex).setProdQnt(newProdQnt);
-        System.out.println(mngObj.listOfProd.get(selectedIndex).getProdQnt());
+        newProdQnt = mngObj.getListOfProd().get(selectedIndex).getProdQnt()-userQnt;
+        mngObj.getListOfProd().get(selectedIndex).setProdQnt(newProdQnt);
+        System.out.println(mngObj.getListOfProd().get(selectedIndex).getProdQnt());
         System.out.println(newProdQnt); }
 
     //Increase the inventory for each item when a purchase is completed
@@ -107,11 +110,11 @@ public class MainActivity extends AppCompatActivity {
     //Create a history for each sale
     private void createHistory(){
         Date purchaseDate = new Date();
-        PurchaseHistory history = new PurchaseHistory(mngObj.listOfProd.get(selectedIndex).getProdName(),
+        PurchaseHistory history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
                 userQnt, total,purchaseDate) ;
-        historyMngObj.Historylist.add(history);
+        historyMngObj.getHistorylist().add(history);
         System.out.println(history);
-        System.out.println(historyMngObj.Historylist); }
+        System.out.println(historyMngObj.getHistorylist()); }
 
     //Required actions when a button on the digit pad is clicked
     public void btnClicked(View v) {
@@ -136,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
         if (!((itemQntTV.getText().toString().isEmpty())||(itemSelectedTV.getText().toString().isEmpty()))){
             //int userSelectedQnt = Integer.parseInt(itemQntTV.getText().toString());
 
-            if(!(mngObj.checkInventory(mngObj.listOfProd.get(selectedIndex),userQnt))){
+            if(!(mngObj.checkInventory(mngObj.getListOfProd().get(selectedIndex),userQnt))){
                 Toast.makeText(this,"Not enough quantity in stock!!!",Toast.LENGTH_SHORT).show();
                 itemQntTV.setText(qntStr="");
                 purchasePrice.setText(String.format("$%,.2f", nullTotal));}
             else{
-                newProdQnt = mngObj.listOfProd.get(selectedIndex).getProdQnt()-userQnt;
+                newProdQnt = mngObj.getListOfProd().get(selectedIndex).getProdQnt()-userQnt;
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
                 updateInventoryQnt();
                 showAlertBox();
@@ -162,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     private void showAlertBox(){
         builder.setTitle("Thank you for shopping with us");
         builder.setMessage("Your purchase is:" + "\n" + userQnt + " "+
-                mngObj.listOfProd.get(selectedIndex).getProdName()+ " "+
+                mngObj.getListOfProd().get(selectedIndex).getProdName()+ " "+
                 "for the total price of "+ String.format("$%,.2f", calculateTotal()));
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

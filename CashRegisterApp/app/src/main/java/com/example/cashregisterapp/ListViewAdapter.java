@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.cashregisterapp.Model.Product;
+import com.example.cashregisterapp.Model.StoreManager;
+
 import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
@@ -24,7 +27,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return StoreMng.listOfProd.size();
+        return StoreMng.getListOfProd().size();
     }
 
     @Override

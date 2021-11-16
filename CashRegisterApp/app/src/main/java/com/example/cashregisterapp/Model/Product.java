@@ -1,19 +1,19 @@
-package com.example.cashregisterapp;
+package com.example.cashregisterapp.Model;
 
 public class Product {
+    //Declaring instance variables
     private String prodName;
     private int prodQnt;
     private double prodPrice;
 
-    //public an empty constructor
-    Product(){}
+    //Empty constructor
+   public Product(){}
 
-    //public a custom constructor
+    //Custom constructor
     public Product(String prodName, int prodQnt, double prodPrice) {
         this.prodName = prodName;
         this.prodQnt = prodQnt;
-        this.prodPrice = prodPrice;
-    }
+        this.prodPrice = prodPrice; }
 
     //creating getters for the class instance variables
     public String getProdName() { return prodName; }
