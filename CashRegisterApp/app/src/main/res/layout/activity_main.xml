@@ -196,7 +196,7 @@
                 android:backgroundTint="@color/VioletRed"
                 android:gravity="center"
                 android:onClick="mngBtnClicked"
-                android:text="Manager"
+                android:text="@string/Mng_Bnt"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
             <TextView

@@ -18,12 +18,18 @@ public class ManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
         history = (Button) findViewById(R.id.btn_history);
-      // PurchaseHistory shopperPH = getIntent().getExtras().getParcelable("HistoryList");
-       // System.out.println(shopperPH.toString());
+       /* if (getIntent().hasExtra(HistoryList)){
+            // PurchaseHistory shopperPH = getIntent().getExtras().getParcelable("HistoryList");
+            // System.out.println(shopperPH.toString());
+        }*/
     }
 
-    public void btnClicked(View v){
+    public void historyClicked(View v){
     Intent toPurchaseReport = new Intent(this, HistoryReportActivity.class);
     startActivity(toPurchaseReport);}
+
+    public void restockClicked(View v){
+        Intent toRestockActivity = new Intent(this, RestockActivity.class);
+        startActivity(toRestockActivity);}
 
 }

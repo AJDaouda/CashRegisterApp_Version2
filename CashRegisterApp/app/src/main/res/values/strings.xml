@@ -13,5 +13,13 @@
 
     <string name="BtnClear_value">C</string>
 
-    <string name="Mng_Activity_Bnt">HISTORY</string>
+    <string name="Mng_Bnt">MANAGER</string>
+    <string name="history_Bnt">HISTORY</string>
+    <string name="restock_Bnt">RESTOCK</string>
+
+    <string name="EditText_text">Enter New Quantity</string>
+
+    <string name="Restock_OK_Btn">OK</string>
+    <string name="Restock_Cancel_Btn">Cancel</string>
+
 </resources>
