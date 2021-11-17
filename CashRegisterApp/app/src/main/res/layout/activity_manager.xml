@@ -12,29 +12,30 @@
 
 
     <Button
-        android:id="@+id/btn_history"
+        android:id="@+id/history_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_centerInParent="true"
+        android:layout_centerInParent="true"
         android:layout_marginStart="140dp"
         android:layout_marginEnd="140dp"
         android:backgroundTint="@color/VioletRed"
         android:gravity="center"
-        android:onClick="historyClicked"
+        android:onClick="btnClicked"
         android:text="@string/history_Bnt"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn_restock"
+        android:id="@+id/restock_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_history"
+        android:layout_below="@+id/history_btn"
         android:layout_marginStart="138dp"
         android:layout_marginEnd="138dp"
         android:backgroundTint="@color/VioletRed"
         android:gravity="center"
-        android:onClick="restockClicked"
+
+        android:onClick="btnClicked"
         android:text="@string/restock_Bnt"
         android:textColor="@color/black"
         android:textSize="20sp" />

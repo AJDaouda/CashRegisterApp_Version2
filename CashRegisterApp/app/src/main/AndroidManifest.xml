@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashRegisterApp">
         <activity
+            android:name=".HistoryDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".RestockActivity"
             android:exported="true">
             <meta-data
@@ -42,4 +45,3 @@
     </application>
 
 </manifest>
-

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,11 +10,15 @@
 
     <!-- -->
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline5"
+        android:orientation="horizontal"
         android:weightSum="3">
 
 
@@ -22,18 +26,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_weight="2" >
+            android:layout_weight="2"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/qnt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
-                android:textSize="20dp"
-                />
+                android:textSize="20dp" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -110,6 +113,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -147,6 +151,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,8 +189,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/mng"
@@ -199,6 +204,7 @@
                 android:text="@string/Mng_Bnt"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
+
             <TextView
                 android:id="@+id/cost"
                 android:layout_width="match_parent"
@@ -222,20 +228,43 @@
                 android:textSize="20sp" />
 
         </TableLayout>
+
     </GridLayout>
 
     <TextView
         android:id="@+id/selectedprod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline6"
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        />
     <!--android:text="SelectedItem" -->
 
     <ListView
         android:id="@+id/listViewid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline6"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
