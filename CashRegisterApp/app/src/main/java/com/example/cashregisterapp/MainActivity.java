@@ -113,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
         PurchaseHistory history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
                 userQnt, total,purchaseDate) ;
         historyMngObj.getHistorylist().add(history);
-        System.out.println(history);
-        System.out.println(historyMngObj.getHistorylist()); }
+        //System.out.println(history);
+       // System.out.println(historyMngObj.getHistorylist());
+        }
 
     //Required actions when a button on the digit pad is clicked
     public void btnClicked(View v) {
@@ -193,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         Add a toString method to my history array list
         Parse the toString historyArray list to my intent
         */
+        //toMngActivity.putParcelableArrayListExtra("HistoryList", historyMngObj.getHistorylist());
         startActivity(toMngActivity);
     }
-
 }

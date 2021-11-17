@@ -13,7 +13,7 @@ import com.example.cashregisterapp.Model.StoreManager;
 import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
-    StoreManager StoreMng = new StoreManager();
+    //static StoreManager AdaptStoreMng = new StoreManager();
     List<Product> productList;
     Context storeContext;
     //LayoutInflater inflater; 2nd method
@@ -27,7 +27,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return StoreMng.getListOfProd().size();
+        return productList.size();
     }
 
     @Override
