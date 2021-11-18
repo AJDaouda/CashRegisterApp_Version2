@@ -12,6 +12,7 @@
     <string name="Btn9_value">9</string>
 
     <string name="BtnClear_value">C</string>
+    <string name="Prod_TV_Text">Product Type</string>
 
     <string name="Mng_Bnt">MANAGER</string>
     <string name="history_Bnt">HISTORY</string>

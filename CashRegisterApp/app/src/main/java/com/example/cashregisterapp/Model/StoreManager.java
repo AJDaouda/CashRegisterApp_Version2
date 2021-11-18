@@ -16,6 +16,7 @@ public class StoreManager {
     Product shoe =new Product("Shoes  "+"\uD83E\uDD7E", 30, 10.44);
     Product hat =new Product("Hats  "+"\uD83C\uDFA9", 10, 5.99);
 
+
     //Empty constructor
     /*public StoreManager() {}*/
 

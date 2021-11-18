@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/prodName"
+            android:id="@+id/RecyclerprodName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,7 +20,7 @@
             />
 
         <TextView
-            android:id="@+id/prodQnt"
+            android:id="@+id/RecyclerprodQnt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
@@ -31,11 +30,13 @@
             android:text="prodQnt"/>
     </LinearLayout>
 
+
     <TextView
-        android:id="@+id/prodPrice"
+        android:id="@+id/RecyclerprodPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:textSize="18sp"
         android:text="prodPrice"/>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -3,6 +3,7 @@ package com.example.cashregisterapp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,10 +22,12 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+
     //External class objects declaration
     ListViewAdapter customAdapter;//To access the "ListViewAdapter" class
     static StoreManager mngObj = new StoreManager(); //To access the "StoreManager" class
     static PurchaseHistory historyMngObj = new PurchaseHistory();
+    //ArrayList<Product> listOfProd = ((MyApp))getAppl;
 
 
     //Instance variables declaration
@@ -109,21 +112,35 @@ public class MainActivity extends AppCompatActivity {
 
     //Create a history for each sale
     private void createHistory(){
-        Date purchaseDate = new Date();
+        Date date = new Date();
+        String purchaseDate = String.valueOf(date);
+        System.out.println(purchaseDate);
         PurchaseHistory history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
                 userQnt, total,purchaseDate) ;
-        historyMngObj.getHistorylist().add(history);
-        //System.out.println(history);
-       // System.out.println(historyMngObj.getHistorylist());
-        }
+        System.out.println(history);
+        System.out.println("I'm here");
+        Intent sendHistory = new Intent();
+        sendHistory.putExtra("hist",history);
+        setResult(Activity.RESULT_OK,sendHistory);
+        //historyMngObj.getHistorylist().add(history);
+        /*Intent sendHistoryIntent = new Intent(this,HistoryReportActivity.class);
+        sendHistoryIntent.putExtra("History",history);
+        setResult(Activity.RESULT_OK,sendHistoryIntent);
+        finish();*/
+    }
+
+
+    private void clearUI(){
+        itemQntTV.setText(qntStr = "");
+        purchasePrice.setText("");
+        itemSelectedTV.setText("");
+    }
 
     //Required actions when a button on the digit pad is clicked
     public void btnClicked(View v) {
         //When the client clicks on the "Clear" button
         if (v==clear){
-            itemQntTV.setText(qntStr="");
-            itemSelectedTV.setText("");
-            purchasePrice.setText("");
+            clearUI();
             System.out.println(itemQntTV.getText().toString());
             /*calcObj.calcOperands.clear();
             System.out.println(calcObj.calcOperands.toString());*/
@@ -147,21 +164,20 @@ public class MainActivity extends AppCompatActivity {
             else{
                 newProdQnt = mngObj.getListOfProd().get(selectedIndex).getProdQnt()-userQnt;
                 purchasePrice.setText(String.format("$%,.2f", calculateTotal()));
-                updateInventoryQnt();
                 showAlertBox();
+                updateInventoryQnt();
                 customAdapter.notifyDataSetChanged();
-                itemQntTV.setText(qntStr="");
-                itemSelectedTV.setText("");
-                purchasePrice.setText("");
+                clearUI();
                 createHistory();
                 Log.d("new item qnt", String.valueOf(newProdQnt));
-
             }}
         else {
             Toast.makeText(this,"All fields are required",Toast.LENGTH_SHORT).show();
         }
     }
 
+
+    //createHistory();
     //Shows a dialog box whe the shopper purchases an item
     private void showAlertBox(){
         builder.setTitle("Thank you for shopping with us");
@@ -188,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void mngBtnClicked(View v) {
         Intent toMngActivity = new Intent(this, ManagerActivity.class);
+        startActivity(toMngActivity);
         /*toMngActivity.putCharSequenceArrayListExtra();
         toMngActivity.putParcelableArrayListExtra();
         toMngActivity.putStringArrayListExtra();
@@ -195,6 +212,6 @@ public class MainActivity extends AppCompatActivity {
         Parse the toString historyArray list to my intent
         */
         //toMngActivity.putParcelableArrayListExtra("HistoryList", historyMngObj.getHistorylist());
-        startActivity(toMngActivity);
     }
+
 }
