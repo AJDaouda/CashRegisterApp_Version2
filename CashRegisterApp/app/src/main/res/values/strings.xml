@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CashRegisterApp</string>
+    <string name="AHRTextView">NO HISTORY TO SHOW</string>
+
     <string name="Btn0_value">0</string>
     <string name="Btn1_value">1</string>
     <string name="Btn2_value">2</string>

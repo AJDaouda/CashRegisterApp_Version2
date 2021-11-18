@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //External class objects declaration
     ListViewAdapter customAdapter;//To access the "ListViewAdapter" class
     static StoreManager mngObj = new StoreManager(); //To access the "StoreManager" class
-    static PurchaseHistory historyMngObj = new PurchaseHistory();
+    //static PurchaseHistory historyMngObj = new PurchaseHistory();
     ArrayList<PurchaseHistory> Historylist = new ArrayList<>();
     PurchaseHistory history;
 
@@ -208,11 +208,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void mngBtnClicked(View v) {
         Intent toMngActivity = new Intent(this, ManagerActivity.class);
-        //Intent sendHistory = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("listOfHistory",Historylist);
-       toMngActivity.putExtras(bundle);
+        Bundle bundle1 = new Bundle();
+        System.out.println("My mainActivity History is: \n"+ Historylist);
+        Bundle bundle2 = new Bundle();
+        System.out.println("My product list is: \n"+ mngObj.getListOfProd());
+        bundle1.putParcelableArrayList("listOfHistory",Historylist);
+        bundle2.putParcelableArrayList("listOfproducts",Historylist);;
+        toMngActivity.putExtras(bundle1);
+        toMngActivity.putExtras(bundle2);
         startActivity(toMngActivity);
+
+        /*Intent toMngActivity1 = new Intent(this, ManagerActivity.class);
+        Bundle bundle1 = new Bundle();
+        System.out.println("My mainActivity History is: \n"+ Historylist);
+        bundle1.putParcelableArrayList("listOfHistory",Historylist);
+        toMngActivity1.putExtras(bundle1);
+        startActivity(toMngActivity1);
+
+        Intent toMngActivity2 = new Intent(this, ManagerActivity.class);
+        Bundle bundle2 = new Bundle();
+        System.out.println("My product list is: \n"+ mngObj.getListOfProd());
+        bundle2.putParcelableArrayList("listOfproducts",Historylist);
+        toMngActivity2.putExtras(bundle2);
+        startActivity(toMngActivity2);*/
+
+        //Intent sendHistory = new Intent();
         /*toMngActivity.putCharSequenceArrayListExtra();
         toMngActivity.putParcelableArrayListExtra();
         toMngActivity.putStringArrayListExtra();

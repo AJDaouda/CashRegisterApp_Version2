@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ public class HistoryListViewAdapter extends RecyclerView.Adapter<HistoryListView
 
     Context hContext;
     ArrayList<PurchaseHistory> allHistoryList;
+    AdapterView.OnItemClickListener listener;
+    LayoutInflater inflater;
     // inner class
     // View Holder = Row in the tabLe
     // static = able to access it from the class without creating object
@@ -37,22 +40,26 @@ public class HistoryListViewAdapter extends RecyclerView.Adapter<HistoryListView
             public TextView getProdPrice() {return prodPrice;}
     }
 
-    HistoryListViewAdapter(Context c, ArrayList<PurchaseHistory>histories){
+   public HistoryListViewAdapter(Context c, ArrayList<PurchaseHistory>histories){
         hContext = c;
         allHistoryList = histories;
+        //this.listener = listener;
+        this.inflater = LayoutInflater.from(hContext);
     }
     @NonNull
     @Override
     //public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(hContext).inflate(R.layout.recycler_row_item,parent,false);
+        View view = inflater.inflate(R.layout.recycler_row_item,parent,false);
        return new viewHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         holder.getProdName().setText(allHistoryList.get(position).getProdName());
         holder.getProdQnt().setText(String.valueOf(allHistoryList.get(position).getProdQnt()));
-        holder.getProdPrice().setText(String.valueOf(allHistoryList.get(position).getProdPrice())); }
+        holder.getProdPrice().setText(String.valueOf(allHistoryList.get(position).getProdPrice()));
+
+    }
 
     @Override
     public int getItemCount() {

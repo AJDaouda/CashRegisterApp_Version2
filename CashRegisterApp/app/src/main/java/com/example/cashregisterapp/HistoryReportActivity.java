@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -22,9 +23,45 @@ import com.example.cashregisterapp.Model.StoreManager;
 import java.util.ArrayList;
 
 public class HistoryReportActivity extends AppCompatActivity {
-    //static PurchaseHistory hObj = new PurchaseHistory();
-    ArrayList<PurchaseHistory> allHistoryList;
+    ArrayList<PurchaseHistory> hRHistoryList;
+
+    HistoryListViewAdapter hCustomAdapter;
+    RecyclerView HistoryRV;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manager);
+
+        HistoryRV=(RecyclerView) findViewById(R.id.HistoryRecyclerView);
+
+        //hCustomAdapter = new HistoryListViewAdapter(this, hRHistoryList);
+
+
+
+        Intent fromMangerActivity = getIntent();
+
+        if(!(this.getIntent().getExtras().getParcelableArrayList("listOfHistory")==null)){
+
+            hRHistoryList = this.getIntent().getExtras().getParcelableArrayList("listOfHistory");
+            HistoryRV.setLayoutManager(new LinearLayoutManager(this));
+            HistoryRV.setAdapter(new HistoryListViewAdapter(this,hRHistoryList));
+        }
+        else{
+            System.out.println("something went wrong");
+        }
+        System.out.println("My HistoryReportActivity History is: \n"+ hRHistoryList);
+
+
+    }
+
+
+
+
+
+    /*
     //Creating receiver Intent
+
     ActivityResultLauncher<Intent> newHistoryActivityResultLauncher;
     HistoryListViewAdapter hCustomAdapter;
     RecyclerView HistoryRV;
@@ -37,14 +74,14 @@ public class HistoryReportActivity extends AppCompatActivity {
         else
             historylist = new ArrayList<>(0);*/
 
-        setContentView(R.layout.activity_history_report);
+     /*   setContentView(R.layout.activity_history_report);
         //getIntent().getExtras().getInt;
         HistoryRV=(RecyclerView) findViewById(R.id.HistoryRecyclerView);
         HistoryRV.setLayoutManager(new LinearLayoutManager(this));
         hCustomAdapter = new HistoryListViewAdapter(this, allHistoryList);
-        HistoryRV.setAdapter(hCustomAdapter);
+        HistoryRV.setAdapter(hCustomAdapter);*/
 
-
+/*
         newHistoryActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -60,11 +97,13 @@ public class HistoryReportActivity extends AppCompatActivity {
                     }
                 }
         );
-    }
+    }*/
 
     /*  @Override
    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList("allHistory",allHistoryList);
     }*/
+
+
 }

@@ -10,7 +10,7 @@ public class Product implements Parcelable{
     private double prodPrice;
 
     //Empty constructor
-   public Product(){}
+   //public Product(){}
 
     //Custom constructor
     public Product(String prodName, int prodQnt, double prodPrice) {
