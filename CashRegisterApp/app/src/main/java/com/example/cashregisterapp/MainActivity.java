@@ -18,16 +18,18 @@ import android.widget.Toast;
 import com.example.cashregisterapp.Model.PurchaseHistory;
 import com.example.cashregisterapp.Model.StoreManager;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
+    //ArrayList<Product> listOfProd = ((MyApp))getAppl;
 
     //External class objects declaration
     ListViewAdapter customAdapter;//To access the "ListViewAdapter" class
     static StoreManager mngObj = new StoreManager(); //To access the "StoreManager" class
     static PurchaseHistory historyMngObj = new PurchaseHistory();
-    //ArrayList<Product> listOfProd = ((MyApp))getAppl;
+    ArrayList<PurchaseHistory> Historylist = new ArrayList<>();
+    PurchaseHistory history;
 
 
     //Instance variables declaration
@@ -111,23 +113,22 @@ public class MainActivity extends AppCompatActivity {
     //public void cancelOrder(){}
 
     //Create a history for each sale
-    private void createHistory(){
+   /* private void createHistory(){
         Date date = new Date();
         String purchaseDate = String.valueOf(date);
-        System.out.println(purchaseDate);
-        PurchaseHistory history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
+         history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
                 userQnt, total,purchaseDate) ;
+        System.out.println(purchaseDate);
+
+
         System.out.println(history);
         System.out.println("I'm here");
-        Intent sendHistory = new Intent();
-        sendHistory.putExtra("hist",history);
-        setResult(Activity.RESULT_OK,sendHistory);
         //historyMngObj.getHistorylist().add(history);
         /*Intent sendHistoryIntent = new Intent(this,HistoryReportActivity.class);
         sendHistoryIntent.putExtra("History",history);
         setResult(Activity.RESULT_OK,sendHistoryIntent);
         finish();*/
-    }
+
 
 
     private void clearUI(){
@@ -168,7 +169,10 @@ public class MainActivity extends AppCompatActivity {
                 updateInventoryQnt();
                 customAdapter.notifyDataSetChanged();
                 clearUI();
-                createHistory();
+                history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
+                        userQnt, total,(new Date().toString())) ;
+                Historylist.add(history);
+
                 Log.d("new item qnt", String.valueOf(newProdQnt));
             }}
         else {
@@ -204,6 +208,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void mngBtnClicked(View v) {
         Intent toMngActivity = new Intent(this, ManagerActivity.class);
+        //Intent sendHistory = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("listOfHistory",Historylist);
+       toMngActivity.putExtras(bundle);
         startActivity(toMngActivity);
         /*toMngActivity.putCharSequenceArrayListExtra();
         toMngActivity.putParcelableArrayListExtra();
