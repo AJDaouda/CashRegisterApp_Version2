@@ -52,8 +52,8 @@ public class HistoryListViewAdapter extends RecyclerView.Adapter<HistoryListView
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         holder.getProdName().setText(allHistoryList.get(position).getProdName());
-       // holder.getProdQnt().setText(allHistoryList.get(position).getProdQnt()+"");
-        //holder.getProdPrice().setText(allHistoryList.get(position).getProdPrice()+"");
+        holder.getProdQnt().setText(allHistoryList.get(position).getProdQnt()+"");
+        holder.getProdPrice().setText(allHistoryList.get(position).getProdPrice()+"");
     }
     @Override
     public int getItemCount() {return allHistoryList.size(); }

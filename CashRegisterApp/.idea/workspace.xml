@@ -12,16 +12,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1612e471-7c59-4ce0-b696-9c8ee914aad1" name="Default Changelist" comment="CashRegisterApp_Version2.8">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1612e471-7c59-4ce0-b696-9c8ee914aad1" name="Default Changelist" comment="CashRegisterApp_Version2.9">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/HistoryListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/HistoryListViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/HistoryReportActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/HistoryReportActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/ManagerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/ManagerActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/Model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/Model/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cashregisterapp/Model/StoreManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_history_report.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_history_report.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -235,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637266127266</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="CashRegisterApp_Version2.9">
+      <created>1637296306190</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1637296306190</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,6 +263,7 @@
     <MESSAGE value="CashRegisterApp_Version2." />
     <MESSAGE value="CashRegisterApp_Version2.7" />
     <MESSAGE value="CashRegisterApp_Version2.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="CashRegisterApp_Version2.8" />
+    <MESSAGE value="CashRegisterApp_Version2.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="CashRegisterApp_Version2.9" />
   </component>
 </project>
