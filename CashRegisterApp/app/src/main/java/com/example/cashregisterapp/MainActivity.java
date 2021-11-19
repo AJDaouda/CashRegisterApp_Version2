@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 history = new PurchaseHistory(mngObj.getListOfProd().get(selectedIndex).getProdName(),
                         userQnt, total,(new Date().toString())) ;
                 Historylist.add(history);
-
+                System.out.println("My History is: \n"+ Historylist);
                 Log.d("new item qnt", String.valueOf(newProdQnt));
             }}
         else {
@@ -209,37 +209,14 @@ public class MainActivity extends AppCompatActivity {
     public void mngBtnClicked(View v) {
         Intent toMngActivity = new Intent(this, ManagerActivity.class);
         Bundle bundle1 = new Bundle();
-        System.out.println("My mainActivity History is: \n"+ Historylist);
         Bundle bundle2 = new Bundle();
-        System.out.println("My product list is: \n"+ mngObj.getListOfProd());
+        //System.out.println("My mainActivity History is: \n"+ Historylist);
+        System.out.println("My product list is: \n"+ mngObj.getListOfProd().toString());
         bundle1.putParcelableArrayList("listOfHistory",Historylist);
-        bundle2.putParcelableArrayList("listOfproducts",Historylist);;
+        bundle2.putParcelableArrayList("ListOfProd",mngObj.getListOfProd());
         toMngActivity.putExtras(bundle1);
         toMngActivity.putExtras(bundle2);
         startActivity(toMngActivity);
-
-        /*Intent toMngActivity1 = new Intent(this, ManagerActivity.class);
-        Bundle bundle1 = new Bundle();
-        System.out.println("My mainActivity History is: \n"+ Historylist);
-        bundle1.putParcelableArrayList("listOfHistory",Historylist);
-        toMngActivity1.putExtras(bundle1);
-        startActivity(toMngActivity1);
-
-        Intent toMngActivity2 = new Intent(this, ManagerActivity.class);
-        Bundle bundle2 = new Bundle();
-        System.out.println("My product list is: \n"+ mngObj.getListOfProd());
-        bundle2.putParcelableArrayList("listOfproducts",Historylist);
-        toMngActivity2.putExtras(bundle2);
-        startActivity(toMngActivity2);*/
-
-        //Intent sendHistory = new Intent();
-        /*toMngActivity.putCharSequenceArrayListExtra();
-        toMngActivity.putParcelableArrayListExtra();
-        toMngActivity.putStringArrayListExtra();
-        Add a toString method to my history array list
-        Parse the toString historyArray list to my intent
-        */
-        //toMngActivity.putParcelableArrayListExtra("HistoryList", historyMngObj.getHistorylist());
     }
 
 }

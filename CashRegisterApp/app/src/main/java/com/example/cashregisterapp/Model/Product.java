@@ -58,6 +58,12 @@ public class Product implements Parcelable{
         dest.writeInt(prodQnt);
         dest.writeDouble(prodPrice);
     }
+
+    @Override
+    public String toString() {
+        return "prodName:'" + prodName + '\n' +
+                "prodQnt:" + prodQnt + '\n' +
+                "prodPrice:" + prodPrice; }
 }
 /*
 public class Product {

@@ -1,5 +1,8 @@
 package com.example.cashregisterapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 public class StoreManager {
@@ -30,10 +33,16 @@ public class StoreManager {
     // Creating a getter to access the "listOfProd"
     public ArrayList<Product> getListOfProd() {return listOfProd;}
 
+
     //Checks the product inventory when a client wants to buy
     public boolean checkInventory(Product inventory, int clientQnt){
         if(clientQnt>inventory.getProdQnt()){
             return false; }
         else{
             return true; } }
+
+    @Override
+    public String toString() {
+        return "listOfProd=" + listOfProd;
+    }
 }
